@@ -154,12 +154,16 @@ i {
 .winner .player-name { font-weight: 300; color: #EB4D4D; }
 
 /**********************************************
-*** RULES
+*** RULES AN HOW TO PLAY
 **********************************************/
 
-.container-rules {
-  width: 400px;
+.container-inf {
+  width: 500px;
   display: block;
-  padding-top: 100px;
   text-decoration-color: black;
+  background-color: #DEDBC1;
+  position: relative;
+  top: 10%;
+  margin: 3%;
+  padding: 3%;
 }
