@@ -1,6 +1,6 @@
 # dice-game
 A dice game project of a Javascrept Udemy course.
-![](GAME-PRINT\DOCEGAME.png "Game-print")
+![](GAME-PRINT/DOCEGAME.png "Game-print")
 
 GAME RULES:
 
