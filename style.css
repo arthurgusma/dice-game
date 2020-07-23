@@ -167,3 +167,7 @@ i {
   margin: 3%;
   padding: 3%;
 }
+
+.col {
+  border-radius: 25%;
+}
