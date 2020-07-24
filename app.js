@@ -3,18 +3,19 @@ the only purpose of the documentatio is for my own learning process and
 has nothing to do with readability for others.
 */
 
-var scores, roundScore, activePlayer, gamePlaying;
+var scores, roundScore, activePlayer, gamePlaying, previusDice;
+
 
 function initGame() {
   gamePlaying = true;
   scores = [0,0];
   roundScore = 0;
   activePlayer = 0;
+  setDiceNone();
   document.getElementById('current-0').textContent = '0';
   document.getElementById('current-1').textContent = '0';
   document.getElementById('score-0').textContent = '0';
   document.getElementById('score-1').textContent = '0';
-  document.querySelector('.dice').style.display = 'none';
   document.querySelector('.player-0-panel').classList.remove('active');
   document.querySelector('.player-1-panel').classList.remove('active');
   document.querySelector('.player-0-panel').classList.add('active');
@@ -28,7 +29,6 @@ initGame();
 // .textContent = allows us to switch the content inside the object
 // HTML content inside JS needs to '' to be reconized as so
 
-document.querySelector('.dice').style.display = 'none';
 // querySelector allows to select an HTML element and change it or re-store it like so:
 // var x = document.querySelector('#current-' + activePlayer).textContent;
 // if I console.log(x), it shows the .dice content
@@ -44,14 +44,21 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     diceDOM.style.display = 'block';
     diceDOM.src = 'dice-' + dice + '.png';
 
-    if (dice !== 1) {
-      roundScore += dice;
+    if (dice === 6 && previusDice === 6) {
+      scores[activePlayer] = 0;
+      dice = 0;
+      document.querySelector('#current-' + activePlayer).textContent = '0';
+      document.querySelector('#score-' + activePlayer).textContent = '0';
+      nextPlayer();
+    } else if (dice !== 1) {
+      roundScore += dice
       document.querySelector('#current-' + activePlayer).textContent = roundScore;
     } else {
-      document.querySelector('#current-' + activePlayer).textContent = 0;
+      document.querySelector('#current-' + activePlayer).textContent = '0';
       nextPlayer();
     }
   }
+  previusDice = dice;
 });
 
 // HOLD BTN
@@ -60,12 +67,14 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
     // add roundScore to score- activePlayer.
     scores[activePlayer] += roundScore;
 
-    document.querySelector('#current-' + activePlayer).textContent = 0;
+    setDiceNone();
+    document.querySelector('#current-' + activePlayer).textContent = '0';
     document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
+
 
     if (scores[activePlayer] >= 100) {
       document.querySelector('#name-' + activePlayer).textContent = 'WINNER!';
-      document.querySelector('.dice').style.display = 'none';
+      setDiceNone();
       alert('Congrats! You\'ve won the game!')
       gamePlaying = false;
     } else {
@@ -76,15 +85,17 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 });
 
 function nextPlayer() {
+  previusDice = 0;
   activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
-  // if else
-
+  // ? then / : else
   roundScore = 0;
   document.querySelector('.player-0-panel').classList.toggle('active');
   document.querySelector('.player-1-panel').classList.toggle('active');
 }
 
-
+document.querySelector('.btn-new').addEventListener('click', initGame);
 // NEW GAME function
 
-document.querySelector('.btn-new').addEventListener('click', initGame);
+function setDiceNone(){
+  document.querySelector('.dice').style.display = 'none';
+}
