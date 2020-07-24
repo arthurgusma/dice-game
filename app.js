@@ -3,7 +3,7 @@ the only purpose of the documentatio is for my own learning process and
 has nothing to do with readability for others.
 */
 
-var scores, roundScore, activePlayer, gamePlaying, previusDice;
+var scores, roundScore, activePlayer, gamePlaying, previusDice, winningScore;
 
 
 function initGame() {
@@ -72,7 +72,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
     document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
 
 
-    if (scores[activePlayer] >= 100) {
+    if (scores[activePlayer] >= winningScore) {
       document.querySelector('#name-' + activePlayer).textContent = 'WINNER!';
       setDiceNone();
       alert('Congrats! You\'ve won the game!')
@@ -99,3 +99,16 @@ document.querySelector('.btn-new').addEventListener('click', initGame);
 function setDiceNone(){
   document.querySelector('.dice').style.display = 'none';
 }
+
+
+document.getElementById('winning-input').addEventListener('input', function(){
+  winningScore = document.getElementById('winning-input').value;
+});
+/* document.getElementById('winning-input').addEventListener(function(){
+  winningScore = document.getElementById('winning-input')
+})
+
+function setScore(){
+  winningScore = document.getElementById('winning-input').value;
+}
+*/
