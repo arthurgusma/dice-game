@@ -1,8 +1,11 @@
 # dice-game
-A dice game project of a Javascrept Udemy course.
-![](GAME-PRINT/DOCEGAME.png "Game-print")
+### DDM with Javascript base.
 
-GAME RULES:
+![front end of the page](https://github.com/arthurgusma/dice-game/blob/master/FRONTEND_DICEGAME.png)
+
+Javascript Udemy course challenge.
+
+###### GAME RULES:
 
 - The game has 2 players, playing in rounds
 - In each turn, a player rolls a dice as many times as he whishes. Each result get added to his ROUND score
